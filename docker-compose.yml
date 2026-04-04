@@ -1,1 +1,44 @@
-# Placeholder — will be populated in step 0.5
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: defer
+      POSTGRES_USER: defer
+      POSTGRES_PASSWORD: defer
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U defer -d defer"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  backend:
+    build: ./backend
+    ports:
+      - "8080:8080"
+    environment:
+      POSTGRES_URL: jdbc:postgresql://postgres:5432/defer
+      POSTGRES_USER: defer
+      POSTGRES_PASSWORD: defer
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  ai-service:
+    build: ./ai-service
+    ports:
+      - "8000:8000"
+    environment:
+      POSTGRES_URL: postgresql://defer:defer@postgres:5432/defer
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+
+volumes:
+  pgdata:
