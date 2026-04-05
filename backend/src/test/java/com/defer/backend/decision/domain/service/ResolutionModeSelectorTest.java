@@ -76,7 +76,7 @@ class ResolutionModeSelectorTest {
         // Off-topic: very low confidence, no frustration, first turn
         DecisionContext ctx = new DecisionContext(
                 UUID.randomUUID(), UUID.randomUUID(), UUID.randomUUID(),
-                0.15, 0.05, 0.1, 0.05, 0.0, 0,
+                0.10, 0.02, 0.1, 0.02, 0.0, 0,
                 "DIRECT_ANSWER", policy
         );
 

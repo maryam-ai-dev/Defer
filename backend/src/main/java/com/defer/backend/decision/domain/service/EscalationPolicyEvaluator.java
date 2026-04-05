@@ -42,10 +42,10 @@ public class EscalationPolicyEvaluator {
         }
 
         // Very low confidence with no distress signals = likely off-topic
-        // A customer with a real support issue would have some frustration or effort
-        boolean veryLowConfidence = ctx.retrievalConfidence() < 0.25;
-        boolean noDistressSignals = ctx.frustrationScore() < 0.15
-                && ctx.effortScore() < 0.3
+        // Only trigger for truly unrelated queries (confidence < 0.15)
+        boolean veryLowConfidence = ctx.retrievalConfidence() < 0.15;
+        boolean noDistressSignals = ctx.frustrationScore() < 0.05
+                && ctx.effortScore() < 0.15
                 && ctx.repetitionCount() == 0;
 
         if (veryLowConfidence && noDistressSignals) {

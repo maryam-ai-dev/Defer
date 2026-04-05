@@ -42,8 +42,8 @@ public class ResolutionModeSelector {
             }
 
             // In-scope but low confidence — only escalate if there are distress signals
-            boolean hasDistress = ctx.frustrationScore() > 0.3
-                    || ctx.effortScore() > 0.4
+            boolean hasDistress = ctx.frustrationScore() > 0.1
+                    || ctx.effortScore() > 0.2
                     || ctx.repetitionCount() > 0;
 
             if (hasDistress) {
