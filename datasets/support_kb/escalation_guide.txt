@@ -1,0 +1,31 @@
+Escalation Guide: When and How Issues Are Escalated
+
+Sometimes a support issue requires additional attention beyond what frontline support can provide. This guide explains when escalation happens, what the process looks like, and what you can expect.
+
+When Issues Are Escalated
+
+Escalation occurs when a support issue meets one or more of the following criteria. The issue has not been resolved after two or more support interactions. The customer has expressed significant frustration or dissatisfaction with the resolution provided. The issue involves a potential safety concern, legal matter, or privacy violation. A refund or compensation request exceeds the standard policy limits. Technical issues that require specialized engineering investigation may also trigger escalation.
+
+Automatic vs. Manual Escalation
+
+Some escalations happen automatically based on system rules. For example, if a customer contacts support more than three times about the same issue, the case is automatically flagged for escalation. Similarly, if support state scores indicate high frustration or high effort, the system may recommend escalation. Manual escalation occurs when a support agent determines that the issue is beyond their scope or expertise and forwards it to a specialist team.
+
+The Escalation Process
+
+When a case is escalated, a handoff packet is created containing all relevant information about the issue. This includes a summary of the problem, the steps already attempted, the customer's current emotional state, and any unresolved questions. The handoff packet ensures that the specialist team has full context and does not need to ask the customer to repeat information.
+
+What Happens After Escalation
+
+Escalated cases are assigned to a senior support specialist or the appropriate department within four hours during business hours. The specialist reviews the handoff packet and reaches out to the customer with an update. Most escalated cases are resolved within 24 to 48 hours. Complex cases involving multiple departments or technical investigations may take longer, but the customer will receive regular status updates.
+
+Customer Expectations During Escalation
+
+During the escalation process, customers should expect an acknowledgment within four hours confirming that their case has been received by the specialist team. They will receive updates at least once every 24 hours until the issue is resolved. If additional information is needed from the customer, the specialist will reach out directly. Customers can continue to contact regular support for status updates on their escalated case.
+
+Requesting an Escalation
+
+If you feel that your issue has not been adequately addressed, you can request an escalation at any time by telling the support agent or by using the escalation option in the support portal. You do not need to provide a reason, though any additional context helps the specialist team prepare. All escalation requests are honored without exception.
+
+Resolution and Follow-Up
+
+Once an escalated case is resolved, the customer receives a summary of the resolution and any actions taken. A follow-up survey may be sent to gather feedback on the escalation experience. This feedback is used to improve our support processes and prevent similar issues in the future.

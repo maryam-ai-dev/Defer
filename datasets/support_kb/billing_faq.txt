@@ -1,0 +1,35 @@
+Billing FAQ: Billing Cycle, Invoices, and Payment Issues
+
+This guide answers common questions about billing, invoices, and payment-related issues.
+
+Billing Cycle
+
+Your billing cycle begins on the date you first subscribe or make a purchase. For monthly subscriptions, you are billed on the same date each month. If the billing date falls on a day that does not exist in a given month, such as the 31st, you will be billed on the last day of that month instead. Annual subscriptions are billed once per year on the anniversary of your original purchase.
+
+Viewing Your Invoices
+
+All invoices are available in your account dashboard under the billing section. Each invoice includes a detailed breakdown of charges, applicable taxes, and payment method used. You can download invoices in PDF format for your records. Invoices are generated immediately after each successful payment.
+
+Payment Methods
+
+We accept major credit cards, debit cards, and select digital payment methods. You can update your payment method at any time from your account settings. When updating your payment method, the new card or payment option will be used for all future charges. Previous invoices are not affected by payment method changes.
+
+Failed Payments
+
+If a payment fails, we will attempt to process it again within 24 hours. You will receive an email notification about the failed payment with instructions on how to update your payment information. If the payment fails three consecutive times, your account may be temporarily suspended until the outstanding balance is resolved. Contact our support team if you need assistance resolving a payment issue.
+
+Unexpected Charges
+
+If you notice a charge on your statement that you do not recognize, first check your invoice history in the account dashboard to verify if it corresponds to a legitimate purchase or renewal. Common reasons for unexpected charges include automatic subscription renewals, prorated charges from plan changes, or pending authorizations from previous attempts. If the charge is still unexplained after reviewing your invoices, contact our support team with the charge amount, date, and the last four digits of the card used.
+
+Cancellations and Prorated Billing
+
+When you cancel a subscription, you retain access to the service until the end of your current billing period. We do not offer prorated refunds for partial billing periods on monthly plans. Annual plans cancelled within the first 14 days are eligible for a full refund. After 14 days, annual plans are not refundable but remain active until the end of the annual period.
+
+Tax and Currency
+
+Prices displayed may or may not include applicable taxes depending on your region. Taxes are calculated based on your billing address and are shown as a separate line item on your invoice. All charges are processed in the currency displayed at the time of purchase. Currency conversion fees from your bank are not within our control.
+
+Contact Support
+
+For any billing questions not covered here, contact our support team with your account email and a description of the issue. Include relevant invoice numbers or charge details to help us resolve your inquiry quickly.

@@ -1,0 +1,31 @@
+Account Access: Login Issues, Password Reset, and Account Recovery
+
+Having trouble accessing your account can be stressful, but most access issues can be resolved quickly. This guide covers the most common account access problems and how to fix them.
+
+Forgotten Password
+
+If you have forgotten your password, use the password reset link on the login page. Enter the email address associated with your account, and we will send you a reset link. The link expires after 24 hours. If you do not receive the email within a few minutes, check your spam or junk folder. Make sure you are entering the same email address you used when creating your account.
+
+Account Locked
+
+For security purposes, accounts are temporarily locked after five consecutive failed login attempts. The lock lasts for 30 minutes, after which you can try again. If you believe your account was locked due to unauthorized access attempts, contact our support team immediately so we can secure your account and investigate any suspicious activity.
+
+Two-Factor Authentication Issues
+
+If you have two-factor authentication enabled and are unable to receive verification codes, first check that your phone has a signal and that the correct phone number is on file. If you have changed your phone number or lost access to your authentication device, contact our support team for assistance. We will verify your identity through alternative means and help you regain access.
+
+Email Address Changes
+
+If you need to update the email address on your account, you can do so from the account settings page while logged in. If you no longer have access to your old email and cannot log in, contact our support team with your account details and a form of identity verification. Email address changes for security reasons are processed within one business day.
+
+Account Recovery
+
+If your account has been compromised, contact our support team immediately. We will temporarily suspend the account to prevent further unauthorized access, reset your credentials, and help you set up new security measures. Account recovery requests are treated as high priority and are typically resolved within a few hours.
+
+Browser and App Issues
+
+Sometimes login problems are caused by browser issues rather than account problems. Try clearing your browser cache and cookies, or attempt to log in using a different browser or device. Ensure your browser is up to date, as older versions may not be compatible with our security features. If you are using our mobile app, make sure it is updated to the latest version.
+
+Contact Support
+
+If none of the above steps resolve your access issue, contact our support team with your account email address and a description of the problem. Include any error messages you are seeing, as these help our team diagnose the issue more quickly.
