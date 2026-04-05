@@ -94,6 +94,30 @@ public class CaseFileApplicationService {
         caseFileRepo.save(mapper.toEntity(cf));
     }
 
+    @Transactional
+    public void incrementRepetition(UUID caseFileId) {
+        CaseFileEntity entity = findEntityById(caseFileId);
+        CaseFile cf = mapper.toDomain(entity);
+        cf.incrementRepetition();
+        caseFileRepo.save(mapper.toEntity(cf));
+    }
+
+    @Transactional
+    public void setResolutionMode(UUID caseFileId, ResolutionMode mode) {
+        CaseFileEntity entity = findEntityById(caseFileId);
+        CaseFile cf = mapper.toDomain(entity);
+        cf.setResolutionMode(mode);
+        caseFileRepo.save(mapper.toEntity(cf));
+    }
+
+    @Transactional
+    public void markEscalationCandidate(UUID caseFileId) {
+        CaseFileEntity entity = findEntityById(caseFileId);
+        CaseFile cf = mapper.toDomain(entity);
+        cf.markEscalationCandidate();
+        caseFileRepo.save(mapper.toEntity(cf));
+    }
+
     @Transactional(readOnly = true)
     public CaseFile getCaseFile(UUID caseFileId) {
         return mapper.toDomain(findEntityById(caseFileId));

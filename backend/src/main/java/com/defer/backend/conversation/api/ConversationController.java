@@ -1,6 +1,7 @@
 package com.defer.backend.conversation.api;
 
 import com.defer.backend.conversation.application.ConversationApplicationService;
+import com.defer.backend.conversation.application.TurnOrchestrationService;
 import com.defer.backend.conversation.contracts.*;
 import com.defer.backend.conversation.domain.Conversation;
 import com.defer.backend.conversation.domain.Message;
@@ -16,9 +17,12 @@ import java.util.UUID;
 public class ConversationController {
 
     private final ConversationApplicationService service;
+    private final TurnOrchestrationService turnService;
 
-    public ConversationController(ConversationApplicationService service) {
+    public ConversationController(ConversationApplicationService service,
+                                   TurnOrchestrationService turnService) {
         this.service = service;
+        this.turnService = turnService;
     }
 
     @PostMapping
@@ -44,6 +48,20 @@ public class ConversationController {
                 request.body()
         );
         return toMessageResponse(m);
+    }
+
+    @PostMapping("/{conversationId}/turn")
+    public TurnResponse processTurn(@PathVariable UUID conversationId,
+                                     @RequestBody TurnRequest request) {
+        TurnOrchestrationService.TurnResult result = turnService.processTurn(
+                conversationId, request.message());
+        return new TurnResponse(
+                toMessageResponse(result.assistantMessage()),
+                result.resolutionMode(),
+                result.escalated(),
+                result.caseFileId(),
+                null // traceId wired in observability sprint
+        );
     }
 
     @GetMapping("/{conversationId}/messages")
