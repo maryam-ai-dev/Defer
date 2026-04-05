@@ -6,6 +6,7 @@ import { fetchEvalRuns, triggerEvalRun } from "@/features/evals/api/evals-api";
 import { EvalSummaryCards } from "@/features/evals/components/EvalSummaryCards";
 import { EvalScenarioTable } from "@/features/evals/components/EvalScenarioTable";
 import { RunEvalButton } from "@/features/evals/components/RunEvalButton";
+import { EvalSparkline } from "@/features/evals/components/EvalSparkline";
 
 function parseMetrics(metricsJson: string | null): EvalMetrics | null {
   if (!metricsJson) return null;
@@ -69,6 +70,7 @@ export default function EvalsPage() {
         ) : (
           <div className="space-y-5">
             <EvalSummaryCards metrics={metrics} />
+            <EvalSparkline runs={runs} />
 
             {latestRun && (
               <>
