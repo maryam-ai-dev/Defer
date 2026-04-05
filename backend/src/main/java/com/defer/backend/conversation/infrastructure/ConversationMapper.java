@@ -7,7 +7,7 @@ import com.defer.backend.conversation.domain.SenderType;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", imports = {ConversationStatus.class, SenderType.class})
 public interface ConversationMapper {
 
     @Mapping(target = "status", expression = "java(entity.getStatus() != null ? ConversationStatus.valueOf(entity.getStatus()) : null)")
