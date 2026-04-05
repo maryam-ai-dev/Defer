@@ -18,6 +18,13 @@ public class CaseFileController {
         this.service = service;
     }
 
+    @PostMapping("/conversations/{conversationId}/case-file")
+    @ResponseStatus(HttpStatus.CREATED)
+    public CaseFileResponse createCaseFile(@PathVariable UUID conversationId,
+                                            @RequestBody CreateCaseFileRequest request) {
+        return toResponse(service.createOrLoadCaseFile(conversationId, request.customerId()));
+    }
+
     @GetMapping("/case-files/{caseFileId}")
     public CaseFileResponse getCaseFile(@PathVariable UUID caseFileId) {
         return toResponse(service.getCaseFile(caseFileId));
