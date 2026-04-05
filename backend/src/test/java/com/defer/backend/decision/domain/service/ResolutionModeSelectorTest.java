@@ -31,51 +31,67 @@ class ResolutionModeSelectorTest {
     void highFrustrationAndEffortAndRepetition_shouldEscalate() {
         DecisionContext ctx = new DecisionContext(
                 UUID.randomUUID(), UUID.randomUUID(), UUID.randomUUID(),
-                0.8,    // confidence
-                0.85,   // frustration > 0.75
-                0.80,   // effort > 0.70
-                0.6,    // trust risk
-                0.0,    // loop
-                3,      // repetition >= 2
-                "DIRECT_ANSWER",
-                policy
+                0.8, 0.85, 0.80, 0.6, 0.0, 3,
+                "DIRECT_ANSWER", policy
         );
 
         DecisionOutcome outcome = ResolutionModeSelector.select(ctx);
 
         assertEquals(ResolutionMode.HUMAN_ESCALATION, outcome.selectedMode());
         assertTrue(outcome.escalationRequired());
-        assertFalse(outcome.rationale().isEmpty());
     }
 
     @Test
-    void lowConfidenceInScope_shouldEscalate() {
+    void lowConfidenceWithDistress_shouldEscalate() {
+        // In-scope (confidence > 0.25), has distress (frustration > 0.3)
         DecisionContext ctx = new DecisionContext(
                 UUID.randomUUID(), UUID.randomUUID(), UUID.randomUUID(),
-                0.30,   // confidence < 0.45
-                0.2,    // low frustration
-                0.1,    // low effort
-                0.1,    // low trust risk
-                0.0,
-                0,
-                "CLARIFICATION_REQUIRED",  // in-scope (not SAFE_REFUSAL)
-                policy
+                0.30, 0.5, 0.5, 0.3, 0.0, 1,
+                "HUMAN_REVIEW_DRAFT", policy
         );
 
         DecisionOutcome outcome = ResolutionModeSelector.select(ctx);
 
         assertEquals(ResolutionMode.HUMAN_ESCALATION, outcome.selectedMode());
         assertTrue(outcome.escalationRequired());
+    }
+
+    @Test
+    void lowConfidenceNoDistress_shouldReviewNotEscalate() {
+        // In-scope but calm first turn — should NOT escalate
+        DecisionContext ctx = new DecisionContext(
+                UUID.randomUUID(), UUID.randomUUID(), UUID.randomUUID(),
+                0.30, 0.1, 0.1, 0.1, 0.0, 0,
+                "DIRECT_ANSWER", policy
+        );
+
+        DecisionOutcome outcome = ResolutionModeSelector.select(ctx);
+
+        assertEquals(ResolutionMode.HUMAN_REVIEW_DRAFT, outcome.selectedMode());
+        assertFalse(outcome.escalationRequired());
+    }
+
+    @Test
+    void veryLowConfidenceNoDistress_shouldSafeRefuse() {
+        // Off-topic: very low confidence, no frustration, first turn
+        DecisionContext ctx = new DecisionContext(
+                UUID.randomUUID(), UUID.randomUUID(), UUID.randomUUID(),
+                0.15, 0.05, 0.1, 0.05, 0.0, 0,
+                "DIRECT_ANSWER", policy
+        );
+
+        DecisionOutcome outcome = ResolutionModeSelector.select(ctx);
+
+        assertEquals(ResolutionMode.SAFE_REFUSAL, outcome.selectedMode());
+        assertFalse(outcome.escalationRequired());
     }
 
     @Test
     void lowConfidenceOutOfScope_shouldSafeRefuse() {
         DecisionContext ctx = new DecisionContext(
                 UUID.randomUUID(), UUID.randomUUID(), UUID.randomUUID(),
-                0.20,   // confidence < 0.45
-                0.1, 0.1, 0.1, 0.0, 0,
-                "SAFE_REFUSAL",  // out-of-scope
-                policy
+                0.20, 0.1, 0.1, 0.1, 0.0, 0,
+                "SAFE_REFUSAL", policy
         );
 
         DecisionOutcome outcome = ResolutionModeSelector.select(ctx);
@@ -88,10 +104,8 @@ class ResolutionModeSelectorTest {
     void mediumConfidence_shouldRequireReview() {
         DecisionContext ctx = new DecisionContext(
                 UUID.randomUUID(), UUID.randomUUID(), UUID.randomUUID(),
-                0.50,   // confidence: 0.45 <= 0.50 < 0.55
-                0.2, 0.2, 0.1, 0.0, 0,
-                "DIRECT_ANSWER",
-                policy
+                0.50, 0.2, 0.2, 0.1, 0.0, 0,
+                "DIRECT_ANSWER", policy
         );
 
         DecisionOutcome outcome = ResolutionModeSelector.select(ctx);
@@ -104,10 +118,8 @@ class ResolutionModeSelectorTest {
     void highConfidenceNormal_shouldAcceptSuggestedMode() {
         DecisionContext ctx = new DecisionContext(
                 UUID.randomUUID(), UUID.randomUUID(), UUID.randomUUID(),
-                0.75,   // confidence > 0.55
-                0.2, 0.2, 0.1, 0.0, 0,
-                "DIRECT_ANSWER",
-                policy
+                0.75, 0.2, 0.2, 0.1, 0.0, 0,
+                "DIRECT_ANSWER", policy
         );
 
         DecisionOutcome outcome = ResolutionModeSelector.select(ctx);

@@ -29,19 +29,33 @@ public class ResolutionModeSelector {
             return new DecisionOutcome(ResolutionMode.HUMAN_ESCALATION, rationale, true);
         }
 
-        // Rule 2: Low confidence — in-scope → HUMAN_ESCALATION, out-of-scope → SAFE_REFUSAL
+        // Rule 2: Low confidence handling
         if (ctx.retrievalConfidence() < policy.getMinConfidenceForDirectAnswer()) {
             boolean inScope = EscalationPolicyEvaluator.isInScope(ctx);
-            if (inScope) {
-                rationale.add("Low confidence (" + ctx.retrievalConfidence()
-                        + " < " + policy.getMinConfidenceForDirectAnswer()
-                        + ") on in-scope topic — escalating to human");
-                return new DecisionOutcome(ResolutionMode.HUMAN_ESCALATION, rationale, true);
-            } else {
+
+            if (!inScope) {
+                // Out of scope — refuse safely, don't waste human agent time
                 rationale.add("Low confidence (" + ctx.retrievalConfidence()
                         + " < " + policy.getMinConfidenceForDirectAnswer()
                         + ") on out-of-scope topic — safe refusal");
                 return new DecisionOutcome(ResolutionMode.SAFE_REFUSAL, rationale, false);
+            }
+
+            // In-scope but low confidence — only escalate if there are distress signals
+            boolean hasDistress = ctx.frustrationScore() > 0.3
+                    || ctx.effortScore() > 0.4
+                    || ctx.repetitionCount() > 0;
+
+            if (hasDistress) {
+                rationale.add("Low confidence (" + ctx.retrievalConfidence()
+                        + " < " + policy.getMinConfidenceForDirectAnswer()
+                        + ") with distress signals — escalating to human");
+                return new DecisionOutcome(ResolutionMode.HUMAN_ESCALATION, rationale, true);
+            } else {
+                rationale.add("Low confidence (" + ctx.retrievalConfidence()
+                        + " < " + policy.getMinConfidenceForDirectAnswer()
+                        + ") but no distress — draft for human review");
+                return new DecisionOutcome(ResolutionMode.HUMAN_REVIEW_DRAFT, rationale, false);
             }
         }
 

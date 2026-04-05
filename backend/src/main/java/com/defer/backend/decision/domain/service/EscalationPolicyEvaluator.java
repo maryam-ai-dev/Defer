@@ -7,6 +7,7 @@ public class EscalationPolicyEvaluator {
 
     /**
      * Check if frustration + effort + repetition triggers escalation.
+     * Only escalate on genuine distress signals, not first-turn low-confidence.
      */
     public static boolean shouldEscalate(DecisionContext ctx) {
         SupportPolicy policy = ctx.policy();
@@ -29,11 +30,28 @@ public class EscalationPolicyEvaluator {
      * Determine if the query is in-scope (customer has a legitimate support issue)
      * vs out-of-scope (query is unrelated to supported topics).
      *
-     * For MVP: if confidence is extremely low AND suggested mode is not an
-     * escalation-type mode, treat as potentially out of scope.
+     * Uses multiple signals:
+     * - AI suggested SAFE_REFUSAL → definitely out of scope
+     * - Very low confidence + no frustration + first turn → likely out of scope
+     * - Any frustration/effort signals → treat as in-scope (customer has a real issue)
      */
     public static boolean isInScope(DecisionContext ctx) {
-        // If the AI suggested any mode other than SAFE_REFUSAL, the topic is in-scope
-        return !"SAFE_REFUSAL".equals(ctx.suggestedMode());
+        // If the AI explicitly suggested SAFE_REFUSAL, it's out of scope
+        if ("SAFE_REFUSAL".equals(ctx.suggestedMode())) {
+            return false;
+        }
+
+        // Very low confidence with no distress signals = likely off-topic
+        // A customer with a real support issue would have some frustration or effort
+        boolean veryLowConfidence = ctx.retrievalConfidence() < 0.25;
+        boolean noDistressSignals = ctx.frustrationScore() < 0.15
+                && ctx.effortScore() < 0.3
+                && ctx.repetitionCount() == 0;
+
+        if (veryLowConfidence && noDistressSignals) {
+            return false;
+        }
+
+        return true;
     }
 }
