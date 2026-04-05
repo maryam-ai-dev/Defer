@@ -1,6 +1,8 @@
 package com.defer.backend.policy.api;
 
 import com.defer.backend.policy.application.PolicyApplicationService;
+import com.defer.backend.policy.contracts.PolicySimulationRequest;
+import com.defer.backend.policy.contracts.PolicySimulationResponse;
 import com.defer.backend.policy.contracts.SupportPolicyResponse;
 import com.defer.backend.policy.contracts.SupportPolicyUpdateRequest;
 import com.defer.backend.policy.domain.SupportPolicy;
@@ -24,6 +26,11 @@ public class PolicyController {
     @PutMapping("/active")
     public SupportPolicyResponse updatePolicy(@RequestBody SupportPolicyUpdateRequest request) {
         return toResponse(service.updatePolicy(request));
+    }
+
+    @PostMapping("/simulate")
+    public PolicySimulationResponse simulate(@RequestBody PolicySimulationRequest request) {
+        return service.simulate(request);
     }
 
     private SupportPolicyResponse toResponse(SupportPolicy p) {
