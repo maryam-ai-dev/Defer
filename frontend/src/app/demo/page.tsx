@@ -3,21 +3,42 @@
 import { useEffect, useState, useCallback } from "react";
 import { createDemoConversation, sendMessage } from "@/features/demo/api/demo-api";
 import { TurnResponse } from "@/features/chat/types/message";
+import { fetchWorkspace } from "@/features/workspace/api/workspace-api";
 import { DemoShell } from "@/features/demo/components/DemoShell";
 import { DemoStatusBar } from "@/features/demo/components/DemoStatusBar";
 import { DemoChatThread, DemoMessage } from "@/features/demo/components/DemoChatThread";
 import { DemoChatComposer } from "@/features/demo/components/DemoChatComposer";
+import { DemoLiveScores, LiveScores } from "@/features/demo/components/DemoLiveScores";
 
 export default function DemoPage() {
   const [conversationId, setConversationId] = useState<string | null>(null);
   const [messages, setMessages] = useState<DemoMessage[]>([]);
   const [sending, setSending] = useState(false);
   const [escalated, setEscalated] = useState(false);
+  const [liveScores, setLiveScores] = useState<LiveScores | null>(null);
 
   useEffect(() => {
     createDemoConversation().then((conv) => {
       setConversationId(conv.id);
     });
+  }, []);
+
+  const refreshScores = useCallback(async (convId: string, mode: string) => {
+    try {
+      const ws = await fetchWorkspace(convId);
+      if (ws.caseFile) {
+        setLiveScores({
+          frustrationScore: ws.caseFile.frustrationScore,
+          confusionScore: ws.caseFile.confusionScore,
+          effortScore: ws.caseFile.effortScore,
+          trustRiskScore: ws.caseFile.trustRiskScore,
+          resolutionMode: mode,
+          confidence: ws.latestDecision?.retrievalConfidence ?? 0,
+        });
+      }
+    } catch {
+      // Workspace may not exist yet on first turn timing
+    }
   }, []);
 
   const handleSend = useCallback(async (text: string) => {
@@ -36,6 +57,9 @@ export default function DemoPage() {
         ...prev,
         { id: result.assistantMessage.id, role: "assistant", text: result.assistantMessage.body },
       ]);
+
+      // Refresh live scores from workspace
+      await refreshScores(conversationId, result.resolutionMode);
 
       if (result.escalated) {
         setEscalated(true);
@@ -67,13 +91,18 @@ export default function DemoPage() {
     } finally {
       setSending(false);
     }
-  }, [conversationId, sending]);
+  }, [conversationId, sending, refreshScores]);
 
   return (
     <DemoShell>
       <DemoStatusBar conversationId={conversationId} />
-      <DemoChatThread messages={messages} sending={sending} />
-      <DemoChatComposer onSend={handleSend} disabled={sending || escalated || !conversationId} />
+      <div className="flex flex-1 overflow-hidden">
+        <div className="flex-1 flex flex-col">
+          <DemoChatThread messages={messages} sending={sending} />
+          <DemoChatComposer onSend={handleSend} disabled={sending || escalated || !conversationId} />
+        </div>
+        <DemoLiveScores scores={liveScores} />
+      </div>
     </DemoShell>
   );
 }
