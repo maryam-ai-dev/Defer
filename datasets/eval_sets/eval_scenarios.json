@@ -1,0 +1,97 @@
+[
+  {
+    "id": "eval-001",
+    "description": "Simple refund policy question",
+    "turns": [
+      { "role": "CUSTOMER", "text": "What is your refund policy? How long do I have to return an item?" }
+    ],
+    "expected_final_mode": "DIRECT_ANSWER",
+    "notes": "Clear in-scope question with strong KB match. Should resolve directly."
+  },
+  {
+    "id": "eval-002",
+    "description": "Shipping timeline question",
+    "turns": [
+      { "role": "CUSTOMER", "text": "How long does standard shipping take? I placed an order 3 days ago." }
+    ],
+    "expected_final_mode": "DIRECT_ANSWER",
+    "notes": "Straightforward shipping FAQ. Evidence should ground confidently."
+  },
+  {
+    "id": "eval-003",
+    "description": "Account login help",
+    "turns": [
+      { "role": "CUSTOMER", "text": "I forgot my password and the reset email isn't arriving. What should I do?" }
+    ],
+    "expected_final_mode": "DIRECT_ANSWER",
+    "notes": "Account access topic is well-covered in KB."
+  },
+  {
+    "id": "eval-004",
+    "description": "Frustrated customer with repeated issue",
+    "turns": [
+      { "role": "CUSTOMER", "text": "My order hasn't arrived. It's been two weeks." },
+      { "role": "CUSTOMER", "text": "I already contacted you about this and nobody helped me. This is really frustrating!" },
+      { "role": "CUSTOMER", "text": "This is the THIRD time I've reached out. Still nothing. I want my money back NOW!" }
+    ],
+    "expected_final_mode": "HUMAN_ESCALATION",
+    "notes": "Escalation through frustration buildup and repetition. Should trigger by turn 2 or 3."
+  },
+  {
+    "id": "eval-005",
+    "description": "Angry customer demanding manager",
+    "turns": [
+      { "role": "CUSTOMER", "text": "Your service is absolutely terrible. I've been waiting weeks for a response." },
+      { "role": "CUSTOMER", "text": "I want to speak to a manager immediately. This is unacceptable and I'm filing a complaint." }
+    ],
+    "expected_final_mode": "HUMAN_ESCALATION",
+    "notes": "High frustration signals from the start. Should escalate quickly."
+  },
+  {
+    "id": "eval-006",
+    "description": "Repeated billing issue",
+    "turns": [
+      { "role": "CUSTOMER", "text": "I was charged twice for my subscription this month." },
+      { "role": "CUSTOMER", "text": "I already tried disputing this through my bank but they said to contact you first." },
+      { "role": "CUSTOMER", "text": "Still no resolution. I've contacted you three times now about the same charge. This is going in circles." }
+    ],
+    "expected_final_mode": "HUMAN_ESCALATION",
+    "notes": "Billing dispute with repetition and effort signals."
+  },
+  {
+    "id": "eval-007",
+    "description": "Vague initial message",
+    "turns": [
+      { "role": "CUSTOMER", "text": "I need help with my thing" }
+    ],
+    "expected_final_mode": "CLARIFICATION_REQUIRED",
+    "notes": "Too vague to ground. Should ask for clarification."
+  },
+  {
+    "id": "eval-008",
+    "description": "Ambiguous product reference",
+    "turns": [
+      { "role": "CUSTOMER", "text": "The thing I bought doesn't work right. Can you fix it?" }
+    ],
+    "expected_final_mode": "CLARIFICATION_REQUIRED",
+    "notes": "No product details, no order number. Needs clarification before proceeding."
+  },
+  {
+    "id": "eval-009",
+    "description": "Question outside KB scope",
+    "turns": [
+      { "role": "CUSTOMER", "text": "Can you help me write a cover letter for a job application?" }
+    ],
+    "expected_final_mode": "SAFE_REFUSAL",
+    "notes": "Completely outside support scope. Should refuse safely, not escalate."
+  },
+  {
+    "id": "eval-010",
+    "description": "Technical question not in KB",
+    "turns": [
+      { "role": "CUSTOMER", "text": "How do I integrate your API with my Salesforce instance? I need the webhook endpoint format." }
+    ],
+    "expected_final_mode": "HUMAN_ESCALATION",
+    "notes": "In-scope (product question) but not in KB. Low confidence should trigger escalation, not refusal."
+  }
+]
