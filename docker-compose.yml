@@ -31,6 +31,8 @@ services:
     build: ./ai-service
     ports:
       - "8000:8000"
+    volumes:
+      - ./datasets:/app/datasets
     environment:
       POSTGRES_URL: postgresql://defer:defer@postgres:5432/defer
       OPENAI_API_KEY: ${OPENAI_API_KEY:-}

@@ -12,7 +12,7 @@ import json
 import logging
 import os
 import uuid
-from datetime import datetime, timezone
+from datetime import datetime
 from pathlib import Path
 
 import asyncpg
@@ -21,7 +21,11 @@ from sentence_transformers import SentenceTransformer
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 logger = logging.getLogger(__name__)
 
-KB_DIR = Path(__file__).resolve().parent.parent.parent / "datasets" / "support_kb"
+KB_DIR = os.getenv(
+    "KB_DIR",
+    str(Path(__file__).resolve().parent.parent.parent / "datasets" / "support_kb"),
+)
+KB_DIR = Path(KB_DIR)
 CHUNK_SIZE = 200  # words
 CHUNK_OVERLAP = 20  # words
 MODEL_NAME = "all-MiniLM-L6-v2"
@@ -67,7 +71,7 @@ async def ingest():
         for filepath in txt_files:
             doc_id = uuid.uuid4()
             title = filepath.stem.replace("_", " ").title()
-            now = datetime.now(timezone.utc)
+            now = datetime.utcnow()
 
             text = filepath.read_text(encoding="utf-8")
             chunks = chunk_text(text)
