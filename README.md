@@ -45,10 +45,10 @@ Customer message
 
 Key decisions:
 
-- The LLM recommends. Spring Boot decides. FastAPI returns `suggested_mode` — Spring Boot makes the final call after applying policy
+- The LLM recommends. Spring Boot decides. FastAPI returns `suggested_mode` - Spring Boot makes the final call after applying policy
 - Python never owns durable state. FastAPI proposes memory updates; Spring Boot validates and persists them
 - Policy thresholds live in the database, never hardcoded. Loaded via `PolicyApplicationService` on every decision
-- Eval ownership is split — FastAPI runs eval scenarios, Spring Boot persists and exposes results
+- Eval ownership is split - FastAPI runs eval scenarios, Spring Boot persists and exposes results
 
 ## Stack
 
