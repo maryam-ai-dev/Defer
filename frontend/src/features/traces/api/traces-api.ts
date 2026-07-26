@@ -1,8 +1,12 @@
 import { TraceSpan } from "../types/trace";
+import { DEMO_MODE } from "@/lib/mock/demo-mode";
+import { getTracesByConversation, getTrace as getMockTrace } from "@/lib/mock/store";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
 
 export async function fetchTracesByConversation(conversationId: string): Promise<TraceSpan[]> {
+  if (DEMO_MODE) return getTracesByConversation(conversationId);
+
   const res = await fetch(`${API_BASE}/api/v1/traces?conversationId=${conversationId}`, {
     cache: "no-store",
   });
@@ -11,6 +15,8 @@ export async function fetchTracesByConversation(conversationId: string): Promise
 }
 
 export async function fetchTrace(traceId: string): Promise<TraceSpan> {
+  if (DEMO_MODE) return getMockTrace(traceId);
+
   const res = await fetch(`${API_BASE}/api/v1/traces/${traceId}`, { cache: "no-store" });
   if (!res.ok) throw new Error(`Failed to fetch trace: ${res.status}`);
   return res.json();

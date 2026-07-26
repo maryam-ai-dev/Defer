@@ -17,6 +17,8 @@ import { ErrorBoundary } from "@/shared/components/ErrorBoundary";
 import { PolicyEditorPanel } from "@/features/policy/components/PolicyEditorPanel";
 import { PolicySimulationResult } from "@/features/policy/components/PolicySimulationResult";
 import { simulatePolicy, PolicyOverride, TurnComparison } from "@/features/policy/api/policy-api";
+import { fetchTracesByConversation } from "@/features/traces/api/traces-api";
+import Link from "next/link";
 
 type RightTab = "intelligence" | "policy";
 
@@ -30,12 +32,16 @@ export default function CaseWorkspacePage() {
   const [rightTab, setRightTab] = useState<RightTab>("intelligence");
   const [simulating, setSimulating] = useState(false);
   const [simResult, setSimResult] = useState<TurnComparison[] | null>(null);
+  const [latestTraceId, setLatestTraceId] = useState<string | null>(null);
 
   const loadWorkspace = useCallback(() => {
     if (!conversationId) return;
     fetchWorkspace(conversationId)
       .then(setWorkspace)
       .catch((e) => setError(e.message));
+    fetchTracesByConversation(conversationId)
+      .then((spans) => setLatestTraceId(spans.length ? spans[spans.length - 1].id : null))
+      .catch(() => setLatestTraceId(null));
   }, [conversationId]);
 
   useEffect(() => {
@@ -177,8 +183,24 @@ export default function CaseWorkspacePage() {
                             {workspace.handoffPacket.escalationReason.replace(/_/g, " ")}
                           </p>
                           <p className="text-[10px] text-[#5a5a6a] mt-1">{workspace.handoffPacket.suggestedNextAction}</p>
+                          <Link
+                            href={`/handoffs/${workspace.handoffPacket.id}`}
+                            target="_blank"
+                            className="text-[10px] text-red-300 hover:underline mt-2 inline-block"
+                          >
+                            View full handoff packet &rarr;
+                          </Link>
                         </div>
                       </div>
+                    )}
+                    {latestTraceId && (
+                      <Link
+                        href={`/traces/${latestTraceId}`}
+                        target="_blank"
+                        className="text-[10px] text-[#4a7ebb] hover:underline block"
+                      >
+                        View trace timeline &rarr;
+                      </Link>
                     )}
                   </>
                 ) : (

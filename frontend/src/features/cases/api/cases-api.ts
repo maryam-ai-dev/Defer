@@ -1,4 +1,6 @@
 import { CaseListItem } from "../types/case";
+import { DEMO_MODE } from "@/lib/mock/demo-mode";
+import { listCases } from "@/lib/mock/store";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
 
@@ -7,6 +9,8 @@ export async function fetchCases(params?: {
   escalationCandidate?: boolean;
   minEffortScore?: number;
 }): Promise<CaseListItem[]> {
+  if (DEMO_MODE) return listCases(params);
+
   const url = new URL(`${API_BASE}/api/v1/cases`);
   if (params?.status) url.searchParams.set("status", params.status);
   if (params?.escalationCandidate !== undefined)

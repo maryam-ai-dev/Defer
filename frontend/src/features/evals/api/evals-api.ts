@@ -1,21 +1,33 @@
 import { EvalRun } from "../types/eval";
+import { DEMO_MODE } from "@/lib/mock/demo-mode";
+import { getEvalRuns, runEval } from "@/lib/mock/store";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
 const AI_SERVICE_URL = process.env.NEXT_PUBLIC_AI_SERVICE_URL || "http://localhost:8000";
 
 export async function fetchEvalRuns(): Promise<EvalRun[]> {
+  if (DEMO_MODE) return getEvalRuns();
+
   const res = await fetch(`${API_BASE}/api/v1/evals`, { cache: "no-store" });
   if (!res.ok) throw new Error(`Failed to fetch evals: ${res.status}`);
   return res.json();
 }
 
 export async function fetchEvalRun(runId: string): Promise<EvalRun> {
+  if (DEMO_MODE) {
+    const run = getEvalRuns().find((r) => r.id === runId);
+    if (!run) throw new Error("404");
+    return run;
+  }
+
   const res = await fetch(`${API_BASE}/api/v1/evals/${runId}`, { cache: "no-store" });
   if (!res.ok) throw new Error(`Failed to fetch eval run: ${res.status}`);
   return res.json();
 }
 
 export async function triggerEvalRun(): Promise<Record<string, unknown>> {
+  if (DEMO_MODE) return runEval() as unknown as Record<string, unknown>;
+
   // Trigger eval run on FastAPI
   const aiRes = await fetch(`${AI_SERVICE_URL}/api/v1/evals/run`, {
     method: "POST",
