@@ -33,8 +33,8 @@ export function CaseList() {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="px-3 py-3 border-b border-[#2e2e38]">
-        <h2 className="text-sm font-medium text-[#e8e8f0]">Cases</h2>
+      <div className="px-3 py-3 border-b border-[#EADAD6]">
+        <h2 className="text-sm font-medium text-[#2F2624]">Cases</h2>
       </div>
       <CaseFilters active={filter} onChange={setFilter} />
       <div className="flex-1 overflow-y-auto">
@@ -43,16 +43,16 @@ export function CaseList() {
             {[1,2,3,4].map((i) => (
               <div key={i} className="space-y-1.5 py-2">
                 <div className="flex gap-2">
-                  <div className="animate-pulse rounded bg-[#2e2e38] h-4 w-14" />
-                  <div className="animate-pulse rounded bg-[#2e2e38] h-4 w-20" />
+                  <div className="animate-pulse rounded bg-[#EADAD6] h-4 w-14" />
+                  <div className="animate-pulse rounded bg-[#EADAD6] h-4 w-20" />
                 </div>
-                <div className="animate-pulse rounded bg-[#2e2e38] h-3 w-full" />
-                <div className="animate-pulse rounded bg-[#2e2e38] h-3 w-2/3" />
+                <div className="animate-pulse rounded bg-[#EADAD6] h-3 w-full" />
+                <div className="animate-pulse rounded bg-[#EADAD6] h-3 w-2/3" />
               </div>
             ))}
           </div>
         ) : cases.length === 0 ? (
-          <div className="px-3 py-8 text-center text-xs text-[#5a5a6a]">No cases found</div>
+          <div className="px-3 py-8 text-center text-xs text-[#A9908D]">No cases found</div>
         ) : (
           cases.map((c) => (
             <CaseListItemCard

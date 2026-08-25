@@ -12,12 +12,12 @@ export function SidebarNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="flex flex-col h-full w-[220px] bg-[#1a1a1f] border-r border-[#2e2e38] py-4">
+    <nav className="flex flex-col h-full w-[220px] bg-[#F6ECEA] border-r border-[#EADAD6] py-4">
       <div className="px-4 mb-6">
-        <h1 className="text-[#e8e8f0] text-lg font-semibold tracking-tight font-[family-name:var(--font-geist-mono)]">
+        <h1 className="text-[#2F2624] text-xl font-medium tracking-tight font-[family-name:var(--font-serif)]">
           defer
         </h1>
-        <p className="text-[#5a5a6a] text-xs mt-0.5 font-[family-name:var(--font-geist-mono)]">
+        <p className="text-[#A9908D] text-xs mt-0.5 font-[family-name:var(--font-geist-mono)]">
           support copilot
         </p>
       </div>
@@ -31,8 +31,8 @@ export function SidebarNav() {
               href={item.href}
               className={`flex items-center gap-2.5 px-3 py-2 rounded-md text-sm transition-colors ${
                 isActive
-                  ? "bg-[#22222a] text-[#4a7ebb]"
-                  : "text-[#8a8a96] hover:text-[#e8e8f0] hover:bg-[#22222a]/50"
+                  ? "bg-[#FFFAF8] text-[#A24B50]"
+                  : "text-[#7A6664] hover:text-[#2F2624] hover:bg-[#FFFAF8]/50"
               }`}
             >
               <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -48,7 +48,7 @@ export function SidebarNav() {
         <Link
           href="/demo"
           target="_blank"
-          className="flex items-center justify-center gap-2 mx-1 px-3 py-2 rounded-md text-xs font-medium text-[#4a7ebb] border border-[#4a7ebb]/30 bg-[#4a7ebb]/5 hover:bg-[#4a7ebb]/10 hover:border-[#4a7ebb]/50 transition-colors"
+          className="flex items-center justify-center gap-2 mx-1 px-3 py-2 rounded-md text-xs font-medium text-[#A24B50] border border-[#A24B50]/30 bg-[#A24B50]/5 hover:bg-[#A24B50]/10 hover:border-[#A24B50]/50 transition-colors"
         >
           Open Customer Demo
           <span className="text-[10px]">&#8599;</span>

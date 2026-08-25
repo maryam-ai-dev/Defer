@@ -4,22 +4,22 @@ export function DemoStatusBar({ conversationId }: { conversationId: string | nul
   const shortId = conversationId ? conversationId.slice(0, 8) : "...";
 
   return (
-    <header className="bg-[#22222a] border-b border-[#2e2e38] px-4 py-3 flex items-center justify-between">
+    <header className="bg-[#FFFAF8] border-b border-[#EADAD6] px-4 py-3 flex items-center justify-between">
       <div className="flex items-center gap-3">
-        <span className="text-[#e8e8f0] text-sm font-semibold tracking-tight font-[family-name:var(--font-geist-mono)]">
+        <span className="text-[#2F2624] text-base font-medium tracking-tight font-[family-name:var(--font-serif)]">
           defer
         </span>
-        <span className="text-[#2e2e38]">|</span>
+        <span className="text-[#EADAD6]">|</span>
         <div>
-          <h1 className="text-sm font-medium text-[#e8e8f0]">Support Chat</h1>
-          <p className="text-[10px] text-[#5a5a6a] font-[family-name:var(--font-geist-mono)]">Case #{shortId}</p>
+          <h1 className="text-sm font-medium text-[#2F2624]">Support Chat</h1>
+          <p className="text-[10px] text-[#A9908D] font-[family-name:var(--font-geist-mono)]">Case #{shortId}</p>
         </div>
       </div>
       {conversationId && (
         <Link
           href={`/cases/${conversationId}`}
           target="_blank"
-          className="text-[10px] text-[#5a5a6a] hover:text-[#4a7ebb] font-[family-name:var(--font-geist-mono)] transition-colors"
+          className="text-[10px] text-[#A9908D] hover:text-[#A24B50] font-[family-name:var(--font-geist-mono)] transition-colors"
         >
           View admin console &rarr;
         </Link>

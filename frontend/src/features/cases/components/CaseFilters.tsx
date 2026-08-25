@@ -24,8 +24,8 @@ export function CaseFilters({
           onClick={() => onChange(f.key)}
           className={`px-2.5 py-1 rounded text-xs transition-colors ${
             active === f.key
-              ? "bg-[#4a7ebb]/20 text-[#4a7ebb]"
-              : "text-[#5a5a6a] hover:text-[#8a8a96] hover:bg-[#22222a]"
+              ? "bg-[#A24B50]/20 text-[#A24B50]"
+              : "text-[#A9908D] hover:text-[#7A6664] hover:bg-[#FFFAF8]"
           }`}
         >
           {f.label}

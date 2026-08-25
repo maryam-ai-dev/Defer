@@ -19,16 +19,16 @@ export function HandoffHeader({
   createdAt: string;
 }) {
   return (
-    <div className="border-b border-[#2e2e38] px-6 py-5">
+    <div className="border-b border-[#EADAD6] px-6 py-5">
       <div className="flex items-center gap-3 mb-2">
-        <h1 className="text-lg font-semibold text-[#e8e8f0]">Handoff Packet</h1>
-        <span className="px-2 py-0.5 rounded text-[10px] font-medium font-[family-name:var(--font-geist-mono)] uppercase tracking-wider bg-red-500/15 text-red-400">
+        <h1 className="text-xl font-medium text-[#2F2624] font-[family-name:var(--font-serif)]">Handoff Packet</h1>
+        <span className="px-2 py-0.5 rounded text-[10px] font-medium font-[family-name:var(--font-geist-mono)] uppercase tracking-wider bg-[#A24B50]/15 text-[#A24B50]">
           {escalationReason.replace(/_/g, " ")}
         </span>
       </div>
-      <div className="flex items-center gap-4 text-xs text-[#5a5a6a] font-[family-name:var(--font-geist-mono)]">
+      <div className="flex items-center gap-4 text-xs text-[#A9908D] font-[family-name:var(--font-geist-mono)]">
         <span>ID: {handoffId.slice(0, 8)}...</span>
-        <Link href={`/cases/${conversationId}`} className="text-[#4a7ebb] hover:underline">
+        <Link href={`/cases/${conversationId}`} className="text-[#A24B50] hover:underline">
           View case &rarr;
         </Link>
         <span className="ml-auto">{formatTime(createdAt)}</span>

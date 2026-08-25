@@ -27,7 +27,7 @@ export default function HandoffPage() {
   if (error) {
     return (
       <div className="flex items-center justify-center h-full">
-        <p className="text-red-400 text-sm">{error}</p>
+        <p className="text-[#A24B50] text-sm">{error}</p>
       </div>
     );
   }
@@ -35,7 +35,7 @@ export default function HandoffPage() {
   if (!handoff) {
     return (
       <div className="flex items-center justify-center h-full">
-        <p className="text-[#5a5a6a] text-sm">Loading handoff packet...</p>
+        <p className="text-[#A9908D] text-sm">Loading handoff packet...</p>
       </div>
     );
   }

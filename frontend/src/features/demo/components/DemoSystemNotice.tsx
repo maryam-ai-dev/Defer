@@ -10,7 +10,7 @@ export function DemoSystemNotice({ mode }: { mode: string }) {
 
   return (
     <div className="flex justify-center">
-      <div className="px-3 py-1.5 rounded-full bg-gray-100 text-xs text-gray-500">
+      <div className="px-3 py-1.5 rounded-full bg-[#FCF4F1] text-xs text-[#7A6664]">
         {text}
       </div>
     </div>

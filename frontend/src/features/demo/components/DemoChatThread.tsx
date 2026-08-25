@@ -28,7 +28,7 @@ export function DemoChatThread({
       <div className="max-w-[680px] mx-auto px-4 py-6 space-y-3">
         {messages.length === 0 && (
           <div className="text-center py-16">
-            <p className="text-[#5a5a6a] text-sm">How can we help you today?</p>
+            <p className="text-[#A9908D] text-sm">How can we help you today?</p>
           </div>
         )}
         {messages.map((msg) => {
@@ -40,7 +40,7 @@ export function DemoChatThread({
           }
           return (
             <div key={msg.id} className="flex justify-center">
-              <div className="px-3 py-1.5 rounded-full bg-[#2e2e38] text-xs text-[#8a8a96]">
+              <div className="px-3 py-1.5 rounded-full bg-[#EADAD6] text-xs text-[#7A6664]">
                 {msg.text}
               </div>
             </div>
@@ -48,14 +48,14 @@ export function DemoChatThread({
         })}
         {sending && (
           <div className="flex justify-start">
-            <div className="px-4 py-3 rounded-2xl bg-[#22222a] border border-[#2e2e38]">
+            <div className="px-4 py-3 rounded-2xl bg-[#FFFAF8] border border-[#EADAD6]">
               <div className="flex items-center gap-2">
                 <div className="flex gap-1">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#4a7ebb] animate-bounce" style={{ animationDelay: "0ms" }} />
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#4a7ebb] animate-bounce" style={{ animationDelay: "150ms" }} />
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#4a7ebb] animate-bounce" style={{ animationDelay: "300ms" }} />
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#A24B50] animate-bounce" style={{ animationDelay: "0ms" }} />
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#A24B50] animate-bounce" style={{ animationDelay: "150ms" }} />
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#A24B50] animate-bounce" style={{ animationDelay: "300ms" }} />
                 </div>
-                <span className="text-[10px] text-[#5a5a6a] font-[family-name:var(--font-geist-mono)]">
+                <span className="text-[10px] text-[#A9908D] font-[family-name:var(--font-geist-mono)]">
                   Defer is evaluating your case...
                 </span>
               </div>

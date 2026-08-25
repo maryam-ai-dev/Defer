@@ -53,8 +53,8 @@ export default function EvalsPage() {
       <div className="px-6 py-5">
         <div className="flex items-center justify-between mb-5">
           <div>
-            <h1 className="text-lg font-semibold text-[#e8e8f0]">Evaluations</h1>
-            <p className="text-xs text-[#5a5a6a] mt-0.5">
+            <h1 className="text-xl font-medium text-[#2F2624] font-[family-name:var(--font-serif)]">Evaluations</h1>
+            <p className="text-xs text-[#A9908D] mt-0.5">
               {runs.length > 0
                 ? `${runs.length} eval run${runs.length > 1 ? "s" : ""} recorded`
                 : "No eval runs yet"}
@@ -65,7 +65,7 @@ export default function EvalsPage() {
 
         {loading ? (
           <div className="text-center py-12">
-            <p className="text-sm text-[#5a5a6a]">Loading eval runs...</p>
+            <p className="text-sm text-[#A9908D]">Loading eval runs...</p>
           </div>
         ) : (
           <div className="space-y-5">
@@ -75,10 +75,10 @@ export default function EvalsPage() {
             {latestRun && (
               <>
                 <div className="flex items-center gap-3">
-                  <h2 className="text-sm font-medium text-[#e8e8f0]">
+                  <h2 className="text-sm font-medium text-[#2F2624]">
                     Latest Run: {latestRun.name}
                   </h2>
-                  <span className="text-[10px] text-[#5a5a6a] font-[family-name:var(--font-geist-mono)]">
+                  <span className="text-[10px] text-[#A9908D] font-[family-name:var(--font-geist-mono)]">
                     {new Date(latestRun.startedAt).toLocaleString()}
                   </span>
                 </div>

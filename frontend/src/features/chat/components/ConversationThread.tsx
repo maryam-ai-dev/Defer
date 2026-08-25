@@ -16,7 +16,7 @@ export function ConversationThread({ messages }: { messages: WorkspaceMessage[] 
     <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3">
       {messages.length === 0 && (
         <div className="flex items-center justify-center h-full">
-          <p className="text-[#5a5a6a] text-sm">No messages yet. Send a message to start.</p>
+          <p className="text-[#A9908D] text-sm">No messages yet. Send a message to start.</p>
         </div>
       )}
       {messages.map((msg) =>

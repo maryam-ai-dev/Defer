@@ -11,7 +11,7 @@ export function RunEvalButton({
     <button
       onClick={onRun}
       disabled={running}
-      className="flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium bg-[#4a7ebb] text-white hover:bg-[#5a8ecc] transition-colors disabled:opacity-60 disabled:cursor-wait"
+      className="flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium bg-[#A24B50] text-white hover:bg-[#B5686D] transition-colors disabled:opacity-60 disabled:cursor-wait"
     >
       {running && (
         <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none">

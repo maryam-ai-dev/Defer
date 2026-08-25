@@ -27,18 +27,18 @@ export function TraceHeader({
   }
 
   return (
-    <div className="border-b border-[#2e2e38] px-6 py-5">
+    <div className="border-b border-[#EADAD6] px-6 py-5">
       <div className="flex items-center gap-3 mb-2">
-        <h1 className="text-lg font-semibold text-[#e8e8f0]">Trace Timeline</h1>
-        <span className="px-2 py-0.5 rounded text-[10px] font-medium font-[family-name:var(--font-geist-mono)] bg-[#4a7ebb]/15 text-[#4a7ebb]">
+        <h1 className="text-xl font-medium text-[#2F2624] font-[family-name:var(--font-serif)]">Trace Timeline</h1>
+        <span className="px-2 py-0.5 rounded text-[10px] font-medium font-[family-name:var(--font-geist-mono)] bg-[#A24B50]/15 text-[#A24B50]">
           {totalDuration}
         </span>
       </div>
-      <div className="flex items-center gap-4 text-xs text-[#5a5a6a] font-[family-name:var(--font-geist-mono)]">
+      <div className="flex items-center gap-4 text-xs text-[#A9908D] font-[family-name:var(--font-geist-mono)]">
         <span>Conversation: {conversationId.slice(0, 8)}...</span>
         <span>{spans.length} spans</span>
         <span>Final: {finalMode.replace(/_/g, " ")}</span>
-        <Link href={`/cases/${conversationId}`} className="text-[#4a7ebb] hover:underline ml-auto">
+        <Link href={`/cases/${conversationId}`} className="text-[#A24B50] hover:underline ml-auto">
           View case &rarr;
         </Link>
       </div>

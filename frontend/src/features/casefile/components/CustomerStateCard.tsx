@@ -3,15 +3,15 @@
 import { useState } from "react";
 
 function scoreColor(score: number): string {
-  if (score < 0.4) return "bg-green-500";
-  if (score <= 0.7) return "bg-amber-500";
-  return "bg-red-500";
+  if (score < 0.4) return "bg-[#5F7C63]";
+  if (score <= 0.7) return "bg-[#A66B2E]";
+  return "bg-[#A24B50]";
 }
 
 function scoreLabelColor(score: number): string {
-  if (score < 0.4) return "text-green-400";
-  if (score <= 0.7) return "text-amber-400";
-  return "text-red-400";
+  if (score < 0.4) return "text-[#5F7C63]";
+  if (score <= 0.7) return "text-[#A66B2E]";
+  return "text-[#A24B50]";
 }
 
 const tooltips: Record<string, string> = {
@@ -29,18 +29,18 @@ function ScoreBar({ label, score }: { label: string; score: number }) {
   return (
     <div className="flex items-center gap-2 relative">
       <span
-        className="text-[10px] text-[#5a5a6a] font-[family-name:var(--font-geist-mono)] w-20 shrink-0 uppercase tracking-wider cursor-help"
+        className="text-[10px] text-[#A9908D] font-[family-name:var(--font-geist-mono)] w-20 shrink-0 uppercase tracking-wider cursor-help"
         onMouseEnter={() => setShowTip(true)}
         onMouseLeave={() => setShowTip(false)}
       >
         {label}
       </span>
       {showTip && tip && (
-        <div className="absolute left-0 bottom-full mb-1 z-10 px-2.5 py-1.5 rounded bg-[#1a1a1f] border border-[#2e2e38] text-[10px] text-[#8a8a96] max-w-[200px] leading-snug shadow-lg">
+        <div className="absolute left-0 bottom-full mb-1 z-10 px-2.5 py-1.5 rounded bg-[#F6ECEA] border border-[#EADAD6] text-[10px] text-[#7A6664] max-w-[200px] leading-snug shadow-lg">
           {tip}
         </div>
       )}
-      <div className="flex-1 h-1.5 bg-[#2e2e38] rounded-full overflow-hidden">
+      <div className="flex-1 h-1.5 bg-[#EADAD6] rounded-full overflow-hidden">
         <div
           className={`h-full rounded-full transition-all duration-500 ${scoreColor(score)}`}
           style={{ width: `${pct}%` }}
@@ -66,7 +66,7 @@ export function CustomerStateCard({
 }) {
   return (
     <div className="space-y-2.5">
-      <h3 className="text-xs font-medium text-[#8a8a96] uppercase tracking-wider font-[family-name:var(--font-geist-mono)]">
+      <h3 className="text-xs font-medium text-[#7A6664] uppercase tracking-wider font-[family-name:var(--font-geist-mono)]">
         Customer State
       </h3>
       <div className="space-y-2">

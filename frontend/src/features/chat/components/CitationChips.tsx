@@ -6,7 +6,7 @@ export function CitationChips({ citations }: { citations?: string[] }) {
       {citations.map((label, i) => (
         <span
           key={i}
-          className="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] bg-[#2e2e38] text-[#8a8a96] font-[family-name:var(--font-geist-mono)]"
+          className="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] bg-[#EADAD6] text-[#7A6664] font-[family-name:var(--font-geist-mono)]"
         >
           {label}
         </span>

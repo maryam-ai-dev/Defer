@@ -36,14 +36,14 @@ export default function CasesPage() {
       <div className="px-6 py-5">
         <div className="flex items-center justify-between mb-5">
           <div>
-            <h1 className="text-lg font-semibold text-[#e8e8f0]">Cases</h1>
-            <p className="text-xs text-[#5a5a6a] mt-0.5">Support case overview and queue</p>
+            <h1 className="text-xl font-medium text-[#2F2624] font-[family-name:var(--font-serif)]">Cases</h1>
+            <p className="text-xs text-[#A9908D] mt-0.5">Support case overview and queue</p>
           </div>
         </div>
 
         {loading ? (
           <div className="text-center py-12">
-            <p className="text-sm text-[#5a5a6a]">Loading cases...</p>
+            <p className="text-sm text-[#A9908D]">Loading cases...</p>
           </div>
         ) : (
           <div className="space-y-5">

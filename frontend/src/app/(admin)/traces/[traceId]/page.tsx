@@ -30,7 +30,7 @@ export default function TracePage() {
   if (error) {
     return (
       <div className="flex items-center justify-center h-full">
-        <p className="text-red-400 text-sm">{error}</p>
+        <p className="text-[#A24B50] text-sm">{error}</p>
       </div>
     );
   }
@@ -38,7 +38,7 @@ export default function TracePage() {
   if (!conversationId || spans.length === 0) {
     return (
       <div className="flex items-center justify-center h-full">
-        <p className="text-[#5a5a6a] text-sm">Loading trace...</p>
+        <p className="text-[#A9908D] text-sm">Loading trace...</p>
       </div>
     );
   }

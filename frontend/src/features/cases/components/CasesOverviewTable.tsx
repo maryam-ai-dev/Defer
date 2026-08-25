@@ -16,38 +16,38 @@ function timeAgo(dateStr: string): string {
 }
 
 function effortColor(score: number): string {
-  if (score < 0.4) return "text-green-400";
-  if (score <= 0.7) return "text-amber-400";
-  return "text-red-400";
+  if (score < 0.4) return "text-[#5F7C63]";
+  if (score <= 0.7) return "text-[#A66B2E]";
+  return "text-[#A24B50]";
 }
 
 export function CasesOverviewTable({ cases }: { cases: CaseListItem[] }) {
   if (cases.length === 0) {
     return (
       <div className="text-center py-12">
-        <p className="text-sm text-[#5a5a6a]">No cases match the current filter.</p>
+        <p className="text-sm text-[#A9908D]">No cases match the current filter.</p>
       </div>
     );
   }
 
   return (
-    <div className="border border-[#2e2e38] rounded-lg overflow-hidden">
+    <div className="border border-[#EADAD6] rounded-lg overflow-hidden">
       <table className="w-full">
         <thead>
-          <tr className="border-b border-[#2e2e38] bg-[#22222a]">
-            <th className="text-left px-4 py-2.5 text-[10px] text-[#5a5a6a] uppercase tracking-wider font-[family-name:var(--font-geist-mono)] font-medium">
+          <tr className="border-b border-[#EADAD6] bg-[#FFFAF8]">
+            <th className="text-left px-4 py-2.5 text-[10px] text-[#A9908D] uppercase tracking-wider font-[family-name:var(--font-geist-mono)] font-medium">
               Issue
             </th>
-            <th className="text-left px-4 py-2.5 text-[10px] text-[#5a5a6a] uppercase tracking-wider font-[family-name:var(--font-geist-mono)] font-medium">
+            <th className="text-left px-4 py-2.5 text-[10px] text-[#A9908D] uppercase tracking-wider font-[family-name:var(--font-geist-mono)] font-medium">
               Status
             </th>
-            <th className="text-left px-4 py-2.5 text-[10px] text-[#5a5a6a] uppercase tracking-wider font-[family-name:var(--font-geist-mono)] font-medium">
+            <th className="text-left px-4 py-2.5 text-[10px] text-[#A9908D] uppercase tracking-wider font-[family-name:var(--font-geist-mono)] font-medium">
               Mode
             </th>
-            <th className="text-left px-4 py-2.5 text-[10px] text-[#5a5a6a] uppercase tracking-wider font-[family-name:var(--font-geist-mono)] font-medium">
+            <th className="text-left px-4 py-2.5 text-[10px] text-[#A9908D] uppercase tracking-wider font-[family-name:var(--font-geist-mono)] font-medium">
               Effort
             </th>
-            <th className="text-left px-4 py-2.5 text-[10px] text-[#5a5a6a] uppercase tracking-wider font-[family-name:var(--font-geist-mono)] font-medium">
+            <th className="text-left px-4 py-2.5 text-[10px] text-[#A9908D] uppercase tracking-wider font-[family-name:var(--font-geist-mono)] font-medium">
               Updated
             </th>
             <th className="px-4 py-2.5" />
@@ -55,12 +55,12 @@ export function CasesOverviewTable({ cases }: { cases: CaseListItem[] }) {
         </thead>
         <tbody>
           {cases.map((c) => (
-            <tr key={c.caseFileId} className="border-b border-[#2e2e38] hover:bg-[#22222a]/50 transition-colors">
+            <tr key={c.caseFileId} className="border-b border-[#EADAD6] hover:bg-[#FFFAF8]/50 transition-colors">
               <td className="px-4 py-3 max-w-[300px]">
-                <p className="text-sm text-[#e8e8f0] truncate">
+                <p className="text-sm text-[#2F2624] truncate">
                   {c.issueSummary || "No summary"}
                 </p>
-                <p className="text-[10px] text-[#5a5a6a] font-[family-name:var(--font-geist-mono)] mt-0.5">
+                <p className="text-[10px] text-[#A9908D] font-[family-name:var(--font-geist-mono)] mt-0.5">
                   {c.caseFileId.slice(0, 8)}...
                 </p>
               </td>
@@ -76,14 +76,14 @@ export function CasesOverviewTable({ cases }: { cases: CaseListItem[] }) {
                 </span>
               </td>
               <td className="px-4 py-3">
-                <span className="text-xs text-[#5a5a6a] font-[family-name:var(--font-geist-mono)]">
+                <span className="text-xs text-[#A9908D] font-[family-name:var(--font-geist-mono)]">
                   {timeAgo(c.updatedAt)}
                 </span>
               </td>
               <td className="px-4 py-3">
                 <Link
                   href={`/cases/${c.conversationId}`}
-                  className="text-xs text-[#4a7ebb] hover:underline"
+                  className="text-xs text-[#A24B50] hover:underline"
                 >
                   View
                 </Link>

@@ -94,7 +94,7 @@ export default function CaseWorkspacePage() {
   if (error) {
     return (
       <div className="flex items-center justify-center h-full">
-        <p className="text-red-400 text-sm">{error}</p>
+        <p className="text-[#A24B50] text-sm">{error}</p>
       </div>
     );
   }
@@ -103,8 +103,8 @@ export default function CaseWorkspacePage() {
     return (
       <div className="flex items-center justify-center h-full">
         <div className="space-y-2 text-center">
-          <div className="animate-pulse rounded-full bg-[#2e2e38] h-8 w-8 mx-auto" />
-          <p className="text-[#5a5a6a] text-sm">Loading workspace...</p>
+          <div className="animate-pulse rounded-full bg-[#EADAD6] h-8 w-8 mx-auto" />
+          <p className="text-[#A9908D] text-sm">Loading workspace...</p>
         </div>
       </div>
     );
@@ -115,11 +115,13 @@ export default function CaseWorkspacePage() {
     <WorkspaceShell
       center={
         <div className="flex flex-col h-full">
-          <div className="border-b border-[#2e2e38] px-4 py-3">
-            <h2 className="text-sm font-medium text-[#e8e8f0]">Conversation</h2>
-            <p className="text-xs text-[#5a5a6a] mt-0.5 font-[family-name:var(--font-geist-mono)]">
-              {workspace.conversation.id.slice(0, 8)}... &middot; {workspace.conversation.channel} &middot; {workspace.conversation.status}
+          <div className="border-b border-[#EADAD6] px-4 py-3">
+            <p className="text-[10px] uppercase tracking-wider text-[#A9908D] font-[family-name:var(--font-geist-mono)]">
+              Case #{workspace.conversation.id.slice(0, 8)} &middot; {workspace.conversation.channel} &middot; {workspace.conversation.status}
             </p>
+            <h2 className="text-lg font-medium text-[#2F2624] font-[family-name:var(--font-serif)] mt-0.5">
+              {workspace.caseFile?.issueSummary || "Conversation"}
+            </h2>
           </div>
           <ConversationThread messages={workspace.messages} />
           {lastMode && <SystemEventCard mode={lastMode} />}
@@ -129,13 +131,13 @@ export default function CaseWorkspacePage() {
       right={
         <div className="flex flex-col h-full">
           {/* Tabs */}
-          <div className="flex border-b border-[#2e2e38] shrink-0">
+          <div className="flex border-b border-[#EADAD6] shrink-0">
             <button
               onClick={() => setRightTab("intelligence")}
               className={`flex-1 px-3 py-2.5 text-[10px] uppercase tracking-wider font-[family-name:var(--font-geist-mono)] transition-colors ${
                 rightTab === "intelligence"
-                  ? "text-[#4a7ebb] border-b-2 border-[#4a7ebb]"
-                  : "text-[#5a5a6a] hover:text-[#8a8a96]"
+                  ? "text-[#A24B50] border-b-2 border-[#A24B50]"
+                  : "text-[#A9908D] hover:text-[#7A6664]"
               }`}
             >
               Intelligence
@@ -144,8 +146,8 @@ export default function CaseWorkspacePage() {
               onClick={() => setRightTab("policy")}
               className={`flex-1 px-3 py-2.5 text-[10px] uppercase tracking-wider font-[family-name:var(--font-geist-mono)] transition-colors ${
                 rightTab === "policy"
-                  ? "text-[#4a7ebb] border-b-2 border-[#4a7ebb]"
-                  : "text-[#5a5a6a] hover:text-[#8a8a96]"
+                  ? "text-[#A24B50] border-b-2 border-[#A24B50]"
+                  : "text-[#A9908D] hover:text-[#7A6664]"
               }`}
             >
               Policy
@@ -175,18 +177,18 @@ export default function CaseWorkspacePage() {
                     <AttemptedActionsCard actions={workspace.attemptedActions} />
                     {workspace.handoffPacket && (
                       <div className="space-y-2.5">
-                        <h3 className="text-xs font-medium text-red-400 uppercase tracking-wider font-[family-name:var(--font-geist-mono)]">
+                        <h3 className="text-xs font-medium text-[#A24B50] uppercase tracking-wider font-[family-name:var(--font-geist-mono)]">
                           Handoff Packet
                         </h3>
-                        <div className="rounded-md px-3 py-2.5 bg-red-500/10 border border-red-500/20">
-                          <p className="text-xs text-red-400 font-[family-name:var(--font-geist-mono)]">
+                        <div className="rounded-md px-3 py-2.5 bg-[#A24B50]/10 border border-[#A24B50]/20">
+                          <p className="text-xs text-[#A24B50] font-[family-name:var(--font-geist-mono)]">
                             {workspace.handoffPacket.escalationReason.replace(/_/g, " ")}
                           </p>
-                          <p className="text-[10px] text-[#5a5a6a] mt-1">{workspace.handoffPacket.suggestedNextAction}</p>
+                          <p className="text-[10px] text-[#A9908D] mt-1">{workspace.handoffPacket.suggestedNextAction}</p>
                           <Link
                             href={`/handoffs/${workspace.handoffPacket.id}`}
                             target="_blank"
-                            className="text-[10px] text-red-300 hover:underline mt-2 inline-block"
+                            className="text-[10px] text-[#A24B50] hover:underline mt-2 inline-block"
                           >
                             View full handoff packet &rarr;
                           </Link>
@@ -197,7 +199,7 @@ export default function CaseWorkspacePage() {
                       <Link
                         href={`/traces/${latestTraceId}`}
                         target="_blank"
-                        className="text-[10px] text-[#4a7ebb] hover:underline block"
+                        className="text-[10px] text-[#A24B50] hover:underline block"
                       >
                         View trace timeline &rarr;
                       </Link>
@@ -205,7 +207,7 @@ export default function CaseWorkspacePage() {
                   </>
                 ) : (
                   <div className="text-center py-8">
-                    <p className="text-xs text-[#5a5a6a]">No case data yet</p>
+                    <p className="text-xs text-[#A9908D]">No case data yet</p>
                   </div>
                 )}
               </>
